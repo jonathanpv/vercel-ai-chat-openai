@@ -30,17 +30,26 @@ Kernel Mode vs User Mode
 PID
 Datatype
 Scheduling algorithms
+
+if there is nothing operating systems related or no queries to generate
+reply with:
+
+"[]"
+
+for example:
+user: hello hows it going?
+assistant: []
 `
 
 export const QueryGeneratorMessages = [
-    {"role": "system", "content": QueryGeneratorSystemMessage},
-    {"role": "user", "content": "recommend a study plan for exam 1"},
-    {"role": "assistant", "content": "[\"exam1\", \"exam 1 sample questions\"]"},
-    {"role": "user", "content": "create flash cards for exam 2"},
-    {"role": "assistant", "content": "[\"exam 2\", \"exam 2 sample questions\"]"},
-    {"role": "user", "content": "what are the deadlines for major exams"},
-    {"role": "assistant", "content": "[\"Important Dates\", \"Deadline\"]"},
-    {"role": "user", "content": "what's the percentage for exam 1 on my final grade?"},
-    {"role": "assistant", "content": "[\"grading policy\"]"},
+    {role: "system", content: QueryGeneratorSystemMessage},
+    {role: "user", content: "recommend a study plan for exam 1"},
+    {role: "assistant", content: "[\"exam1\", \"exam 1 sample questions\"]"},
+    {role: "user", content: "create flash cards for exam 2"},
+    {role: "assistant", content: "[\"exam 2\", \"exam 2 sample questions\"]"},
+    {role: "user", content: "what are the deadlines for major exams"},
+    {role: "assistant", content: "[\"Important Dates\", \"Deadline\"]"},
+    {role: "user", content: "what's the percentage for exam 1 on my final grade?"},
+    {role: "assistant", content: "[\"grading policy\"]"},
   ];
   
