@@ -14,9 +14,8 @@ export async function POST(req: Request, res: Response) {
   // const { messages } = await req.json();
   const { messages } = await req.json() as { messages: ChatMessage[] };
 
-  let role = [ OperatingSystemsRole as ChatMessage ];
+  let msg: ChatMessage[] = [OperatingSystemsRole as ChatMessage, ...messages];
 
-  let msg = role.concat(messages);
   // Azure talk to your data setup
   const endpoint = process.env.ENDPOINT || '';
   // Your Azure OpenAI API key
