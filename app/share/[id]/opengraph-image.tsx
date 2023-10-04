@@ -1,7 +1,5 @@
 import { ImageResponse } from 'next/server'
 
-import { getSharedChat } from '@/app/actions'
-
 export const runtime = 'edge'
 
 export const alt = 'AI Chatbot'
@@ -28,13 +26,7 @@ interface ImageProps {
 }
 
 export default async function Image({ params }: ImageProps) {
-  const chat = await getSharedChat(params.id)
-
-  if (!chat || !chat?.sharePath) {
-    return null
-  }
-
-  const textAlign = chat?.title?.length > 40 ? 'items-start' : 'items-center'
+  const textAlign = 'items-center'
 
   return new ImageResponse(
     (
@@ -53,9 +45,7 @@ export default async function Image({ params }: ImageProps) {
               </svg>
             </div>
             <div tw="flex text-white font-bold text-4xl leading-normal ml-10">
-              {chat.title.length > 120
-                ? `${chat.title.slice(0, 120)}...`
-                : chat.title}
+              {"chat title"}
             </div>
           </div>
           <div tw="flex w-full mt-14 items-start">
