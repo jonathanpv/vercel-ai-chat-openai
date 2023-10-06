@@ -11,6 +11,15 @@ export async function* streamableChatCompletions(stream: AsyncIterable<ChatCompl
     }
   }
 
+export async function* streamableString(stream: string): AsyncGenerator<Uint8Array, void, undefined> {
+  const encoder = new TextEncoder();
+
+  for (let letter of stream) {
+    yield encoder.encode(letter);
+    await new Promise(res => setTimeout(res, 30));
+  }
+}
+
 export function createStream(iterator: AsyncGenerator<Uint8Array, void, undefined>) {
     return new ReadableStream({
       async pull(controller) {
@@ -24,6 +33,12 @@ export function createStream(iterator: AsyncGenerator<Uint8Array, void, undefine
       },
     });
   }
+
+export async function enqueueStreamable(controller: ReadableStreamDefaultController<any>, iterator: AsyncGenerator<Uint8Array, void, undefined>) {
+  const {value, done} = await iterator.next();
+
+  controller.enqueue(value);
+}
 
 export async function generatorToArray(generator: AsyncGenerator<Uint8Array, void, undefined>): Promise<string[]> {
     const array: string[] = [];
